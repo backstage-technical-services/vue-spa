@@ -1,0 +1,32 @@
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1404px
+);
+
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px,
+        xxl: 1344px
+);
+
+$navbar-height-normal: 60px;
+$navbar-height-large: 80px;
+
+$navbar-bg-color: #1c1c1c;
+$navbar-bg-color-hover: #222;
+$navbar-bg-color-active: #222;
+
+$color-text: #ccc !default;
+
+$color-bts-yellow: #ffcf00;
+$color-bts-yellow-dark: #c5a000;
+$color-bts-gold: #d69e00;
+$color-bts-orange: #d18800;
+
+$font-size-main: 15px;
