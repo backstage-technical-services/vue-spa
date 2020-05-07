@@ -1,0 +1,45 @@
+include:
+  - local: .gitlab/ci/.node.gitlab-ci.yml
+  - local: .gitlab/ci/.docker.gitlab-ci.yml
+
+.node-test:
+  extends: .node-installed
+  stage: test
+  needs:
+    - install
+
+lint:
+  extends: .node-test
+  script:
+    - yarn lint --no-fix
+
+check-types:
+  extends: .node-test
+  script:
+    - yarn check-types
+
+unit-test:
+  extends: .node-test
+  script:
+    - yarn run test:unit
+  artifacts:
+    reports:
+      junit: junit.xml
+  coverage: /All files\s*\|\s*([\d\.]+)/
+
+#e2e-test:
+#  extends: .node-test
+#  script:
+#    - yarn run test:e2e
+
+test-docker-image:
+  extends: .docker
+  stage: test
+  needs:
+    - install
+  script:
+    - scripts/build_image.sh
+    - scripts/test_container.sh
+  except:
+    refs:
+      - master
