@@ -1,14 +1,11 @@
-import { shallowMount } from '@vue/test-utils'
 import { MainLayout } from '@/layouts'
-import vue from '../utils/vue'
+import { shallowMount } from '../utils/vue'
 
 describe('the main layout', () => {
   it('should render', () => {
-    const wrapper = shallowMount(MainLayout, {
-      localVue: vue()
-    })
+    const layout = shallowMount(MainLayout)
 
-    expect(wrapper.isVueInstance())
+    expect(layout.isVueInstance())
       .toBeTruthy()
   })
 })

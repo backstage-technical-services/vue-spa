@@ -1,11 +1,9 @@
-import { mount } from '@vue/test-utils'
 import Carousel from '@/components/Carousel/Carousel.vue'
-import vue from '../../utils/vue'
 import { CarouselProps } from '@/components/Carousel/types'
+import { mount } from '../../utils/vue'
 
 const createCarousel = (images: CarouselProps['images']) => {
   return mount(Carousel, {
-    localVue: vue(),
     propsData: {
       images
     }
@@ -14,10 +12,14 @@ const createCarousel = (images: CarouselProps['images']) => {
 
 describe('Carousel component', () => {
   it('renders all images', () => {
-    const carousel = createCarousel([
-      { url: '#1', text: 'Caption #1' },
-      { url: '#2' }
-    ])
+    const carousel = mount(Carousel, {
+      propsData: {
+        images: [
+          { url: '#1', text: 'Caption #1' },
+          { url: '#2' }
+        ]
+      }
+    })
 
     expect(carousel.isVueInstance())
       .toBeTruthy()
@@ -26,7 +28,11 @@ describe('Carousel component', () => {
   })
 
   it('renders with no images provided', () => {
-    const carousel = createCarousel([])
+    const carousel = mount(Carousel, {
+      propsData: {
+        images: []
+      }
+    })
 
     expect(carousel.isVueInstance())
       .toBeTruthy()

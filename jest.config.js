@@ -4,8 +4,8 @@ module.exports = {
     'default', [
       'jest-junit', {
         suiteName: 'Unit Tests',
-        outputDirectory: 'tests',
-        outputName: 'unit.xml',
+        outputDirectory: 'tests/reports',
+        outputName: 'unit-results.xml',
         uniqueOutputName: 'false'
       }
     ]

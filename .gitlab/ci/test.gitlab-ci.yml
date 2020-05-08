@@ -24,7 +24,7 @@ unit-test:
     - yarn run test:unit
   artifacts:
     reports:
-      junit: tests/unit.xml
+      junit: tests/reports/unit-results.xml
   coverage: /All files\s*\|\s*([\d\.]+)/
 
 e2e-test:
@@ -36,7 +36,7 @@ e2e-test:
     - yarn run test:e2e --headless
   artifacts:
     reports:
-      junit: tests/e2e.xml
+      junit: tests/reports/e2e-results.xml
     paths:
       - tests/e2e/videos/**/*.mp4
       - tests/e2e/screenshots/**/*.png
