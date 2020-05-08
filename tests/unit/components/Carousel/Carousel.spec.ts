@@ -1,23 +1,36 @@
-import { createLocalVue, mount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import Carousel from '@/components/Carousel/Carousel.vue'
-import BootstrapVue from 'bootstrap-vue'
+import vue from '../../utils/vue'
+import { CarouselProps } from '@/components/Carousel/types'
 
-const localVue = createLocalVue()
-localVue.use(BootstrapVue)
+const createCarousel = (images: CarouselProps['images']) => {
+  return mount(Carousel, {
+    localVue: vue(),
+    propsData: {
+      images
+    }
+  })
+}
 
 describe('Carousel component', () => {
-  it('renders without crashing', () => {
-    const wrapper = mount(Carousel, {
-      localVue,
-      propsData: {
-        images: [
-          { url: '#1', text: 'Caption #1' },
-          { url: '#2' }
-        ]
-      }
-    })
+  it('renders all images', () => {
+    const carousel = createCarousel([
+      { url: '#1', text: 'Caption #1' },
+      { url: '#2' }
+    ])
 
-    expect(wrapper.isVueInstance()).toBeTruthy()
-    expect(wrapper.element).toMatchSnapshot()
+    expect(carousel.isVueInstance())
+      .toBeTruthy()
+    expect(carousel.findAll('img'))
+      .toHaveLength(2)
+  })
+
+  it('renders with no images provided', () => {
+    const carousel = createCarousel([])
+
+    expect(carousel.isVueInstance())
+      .toBeTruthy()
+    expect(carousel.findAll('img'))
+      .toHaveLength(0)
   })
 })
