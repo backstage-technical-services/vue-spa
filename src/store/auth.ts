@@ -9,7 +9,7 @@ export interface State {
 }
 
 export const decodeToken = (token: string) => {
-  const [ header, body, signature ] = token.split('.')
+  const [header, body, signature] = token.split('.')
 
   return {
     header: JSON.parse(atob(header)),
