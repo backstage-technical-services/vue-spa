@@ -11,10 +11,11 @@ export default new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   scrollBehavior: (to, from, savedPosition) => {
-    return {
-      selector: to.hash || '',
-      offset: to.hash ? undefined : savedPosition || { x: 0, y: 0 }
+    if (to.hash) {
+      return { selector: to.hash }
     }
+
+    return savedPosition || { x: 0, y: 0 }
   },
   routes: [
     ...rootRoutes,

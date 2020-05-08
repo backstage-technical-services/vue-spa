@@ -12,6 +12,3 @@ describe('The home page', () => {
       .toBeDefined()
   })
 })
-
-
-

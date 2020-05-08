@@ -1,14 +1,5 @@
 import Carousel from '@/components/Carousel/Carousel.vue'
-import { CarouselProps } from '@/components/Carousel/types'
 import { mount } from '../../utils/vue'
-
-const createCarousel = (images: CarouselProps['images']) => {
-  return mount(Carousel, {
-    propsData: {
-      images
-    }
-  })
-}
 
 describe('Carousel component', () => {
   it('renders all images', () => {

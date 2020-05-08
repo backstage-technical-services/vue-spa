@@ -1,5 +1,5 @@
 <template>
-  <b-navbar :class="menuClasses" fixed="top" toggleable="lg" type="dark">
+  <b-navbar :class="menuClasses" data-qa-id="mainMenu" fixed="top" toggleable="lg" type="dark">
     <div class="container">
       <!-- Brand -->
       <b-navbar-brand :to="{ name: 'home' }">

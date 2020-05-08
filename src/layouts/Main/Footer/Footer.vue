@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer data-qa-id="footer">
     <div class="footer-row upper">
       <div class="container">
         <footer-about class="footer-item"/>
