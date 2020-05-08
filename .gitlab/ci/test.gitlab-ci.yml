@@ -1,9 +1,9 @@
 include:
-  - local: .gitlab/ci/.node.gitlab-ci.yml
-  - local: .gitlab/ci/.docker.gitlab-ci.yml
+  - local: .gitlab/ci/_node.gitlab-ci.yml
+  - local: .gitlab/ci/_docker.gitlab-ci.yml
 
 .node-test:
-  extends: .node-installed
+  extends: .node
   stage: test
   needs:
     - install
@@ -24,13 +24,24 @@ unit-test:
     - yarn run test:unit
   artifacts:
     reports:
-      junit: junit.xml
+      junit: tests/unit.xml
   coverage: /All files\s*\|\s*([\d\.]+)/
 
-#e2e-test:
-#  extends: .node-test
-#  script:
-#    - yarn run test:e2e
+e2e-test:
+  extends: .node-test
+  image: cypress/base:12
+  script:
+    - yarn cypress install
+    - yarn cypress verify
+    - yarn run test:e2e --headless
+  artifacts:
+    reports:
+      junit: tests/e2e.xml
+    paths:
+      - tests/e2e/videos/**/*.mp4
+      - tests/e2e/screenshots/**/*.png
+    expire_in: 1 day
+    when: always
 
 test-docker-image:
   extends: .docker

@@ -8,6 +8,7 @@ junit.xml
 coverage
 /tests/e2e/videos/
 /tests/e2e/screenshots/
+/tests/*.xml
 
 # local env files
 .env.local
