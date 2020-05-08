@@ -18,3 +18,9 @@ export const resolveLayout = (layout?: Layout): Vue.VueConstructor => {
     return MainLayout
   }
 }
+
+export {
+  AdminLayout,
+  ErrorLayout,
+  MainLayout
+}
