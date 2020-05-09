@@ -8,7 +8,7 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "check-types": "tsc"
+    "check-types": "tsc && rm -rf tsc"
   },
   "dependencies": {
     "axios": "^0.19.2",
