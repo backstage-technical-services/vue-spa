@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-const getTitle = (vue: Vue): string | null => {
+export const getTitle = (vue: Vue): string | null => {
   const { $data: { $title } } = vue
 
   if (!$title) {
