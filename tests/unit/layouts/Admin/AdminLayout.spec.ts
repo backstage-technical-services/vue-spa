@@ -1,5 +1,5 @@
 import { AdminLayout } from '@/layouts'
-import { shallowMount } from '../utils/vue'
+import { shallowMount } from '../../utils/vue'
 
 describe('the admin layout', () => {
   it('should render', () => {

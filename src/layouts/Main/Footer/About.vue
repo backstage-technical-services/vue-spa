@@ -2,7 +2,7 @@
   <div>
     <div>
       <font-awesome-icon :icon="icons.email"/>
-      <a :href="emailLink">info@bts-crew.com</a>
+      <a :href="emailLink" data-qa-id="contact-email">{{emailAddress}}</a>
     </div>
     <div>
       <font-awesome-icon :icon="icons.phone"/>

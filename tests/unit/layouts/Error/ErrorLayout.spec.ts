@@ -1,5 +1,5 @@
 import { ErrorLayout } from '@/layouts'
-import { shallowMount } from '../utils/vue'
+import { shallowMount } from '../../utils/vue'
 
 describe('the error layout', () => {
   it('should render', () => {

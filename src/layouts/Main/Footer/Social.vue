@@ -35,7 +35,7 @@ export default class Social extends Vue {
       title: 'Report an issue',
       icon: faGitlab
     }
-  ];
+  ]
 }
 </script>
 
