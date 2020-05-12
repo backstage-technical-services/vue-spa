@@ -33,7 +33,7 @@ e2e-test:
   script:
     - yarn cypress install
     - yarn cypress verify
-    - yarn run test:e2e --headless
+    - yarn run test:e2e:ci
   artifacts:
     reports:
       junit: tests/reports/e2e-results.xml
@@ -59,6 +59,8 @@ sonarcloud-check:
   stage: test
   needs:
     - install
+    - unit-test
+    - e2e-test
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
