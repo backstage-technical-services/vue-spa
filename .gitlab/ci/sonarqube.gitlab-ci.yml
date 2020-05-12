@@ -1,8 +1,11 @@
 sonarcloud:
   stage: sonarqube
   needs:
+    - lint
+    - check-types
     - unit-test
     - e2e-test
+    - test-docker-image
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
