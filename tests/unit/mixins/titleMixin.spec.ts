@@ -1,6 +1,5 @@
 import Vue from 'vue'
-import titleMixin, { getTitle } from '@/mixins/titleMixin'
-import { createWrapper, mount } from '@vue/test-utils'
+import { getTitle } from '@/mixins/titleMixin'
 
 describe('a vue component with no title', () => {
   const vue = new Vue()
@@ -13,7 +12,7 @@ describe('a vue component with no title', () => {
 describe('a vue component with a function title', () => {
   const vue = new Vue({
     data: {
-      '$title': () => 'Function Title'
+      $title: () => 'Function Title'
     }
   })
 
@@ -26,7 +25,7 @@ describe('a vue component with a string title', () => {
   const vue = new Vue({
     el: '#root',
     data: {
-      '$title': 'String Title'
+      $title: 'String Title'
     }
   })
 
