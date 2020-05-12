@@ -11,6 +11,7 @@
           href="https://gitlab.com/backstage-technical-services/website/hub/issues/new"
           target="_blank"
           title="Report issue"
+          rel="noopener noreferrer"
         >
           <font-awesome-icon :icon="icons.gitlab"></font-awesome-icon>
           <span class="fa fa-gitlab"></span>
