@@ -30,7 +30,7 @@ export const isValidToken = (token: string) => {
   }
 }
 
-const state: State = {
+const initialState: State = {
   accessToken: null,
   refreshToken: null
 }
@@ -68,7 +68,7 @@ const actions: ActionTree<State, RootState> = {
 
 export default {
   namespaced: true,
-  state,
+  state: initialState,
   getters,
   mutations,
   actions

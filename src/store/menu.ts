@@ -9,7 +9,7 @@ export interface State {
   adminMenu?: AdminMenu | null;
 }
 
-const state: State = {
+const initialState: State = {
   primaryMenu: undefined,
   adminMenu: undefined
 }
@@ -41,7 +41,7 @@ const actions: ActionTree<State, RootState> = {
 
 export default {
   namespaced: true,
-  state,
+  state: initialState,
   getters,
   mutations,
   actions
