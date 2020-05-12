@@ -80,5 +80,3 @@ export default class FAQ extends Vue {
   readonly $title = 'FAQ'
 }
 </script>
-
-<style lang="scss" scoped></style>
