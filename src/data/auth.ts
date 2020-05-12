@@ -1,3 +1,0 @@
-export const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNTcxOTM5NjI5LCJleHAiOjE2MDM1NjIwMjl9.An3BRVLjtXK602BX-H3uoj9_LARftSKRe0vuz0np01w'
-
-export const refreshToken = 'KErMY8gXik0g0BqBuZ0HwHpnUYa8db0fKSkQCpeSlwFa5iu8ewv0RbVLMPh2phF1X8m03xxs3CfkMFAweeSAJilK07Q1nyjz3ucY'

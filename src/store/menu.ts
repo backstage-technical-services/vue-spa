@@ -1,8 +1,8 @@
 import { AdminMenu, MainMenu } from '@/types/menu'
 import { ActionTree, GetterTree, MutationTree } from 'vuex'
 import { RootState } from '@/store/index'
-import menu from '@/data/menu'
-import adminMenu from '@/data/admin-menu'
+import tmpMenu from '@/data/menu'
+import tmpAdminMenu from '@/data/admin-menu'
 
 export interface State {
   primaryMenu?: MainMenu;
@@ -31,11 +31,11 @@ const mutations: MutationTree<State> = {
 const actions: ActionTree<State, RootState> = {
   refreshPrimaryMenu({ commit }) {
     console.warn('Fetching menu from the API has not yet been implemented')
-    commit('setPrimary', menu)
+    commit('setPrimary', tmpMenu)
   },
   refreshAdminMenu({ commit }) {
     console.warn('Fetching menu from the API has not yet been implemented')
-    commit('setAdmin', adminMenu)
+    commit('setAdmin', tmpAdminMenu)
   }
 }
 
