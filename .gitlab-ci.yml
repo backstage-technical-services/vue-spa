@@ -1,6 +1,7 @@
 stages:
   - install
   - test
+  - sonarqube
   - deploy
 
 default:
@@ -17,4 +18,5 @@ workflow:
 include:
   - local: .gitlab/ci/install.gitlab-ci.yml
   - local: .gitlab/ci/test.gitlab-ci.yml
+  - local: .gitlab/ci/sonarqube.gitlab-ci.yml
   - local: .gitlab/ci/deploy.gitlab-ci.yml
