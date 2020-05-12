@@ -22,7 +22,10 @@ unit-test:
   extends: .node-test
   script:
     - yarn run test:unit
+    - mv coverage coverage-unit
   artifacts:
+    paths:
+      - coverage-unit
     reports:
       junit: tests/reports/unit-results.xml
   coverage: /All files\s*\|\s*([\d\.]+)/
