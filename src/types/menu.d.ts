@@ -1,8 +1,8 @@
 import { IconDefinition } from '@fortawesome/fontawesome-common-types'
 
 export interface MainMenuItem {
-  id: string;
-  text: string;
+  id?: string;
+  text?: string;
   link?: string;
   children?: MainMenuItem[];
 }

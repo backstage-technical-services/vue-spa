@@ -53,15 +53,21 @@ export default class Menu extends Vue {
     }
   }
 
+  handleScroll() {
+    this.scrollPosition = document.documentElement.scrollTop
+  }
+
   created() {
     this.$store.dispatch('menu/refreshPrimaryMenu')
   }
 
   mounted() {
     this.scrollPosition = document.documentElement.scrollTop
-    window.addEventListener('scroll', () => {
-      this.scrollPosition = document.documentElement.scrollTop
-    })
+    window.addEventListener('scroll', this.handleScroll)
+  }
+
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>

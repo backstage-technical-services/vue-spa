@@ -25,10 +25,10 @@ import { MenuItemProps } from './types'
   }
 })
 export default class MenuItem extends Vue {
-  @Prop() readonly id!: MenuItemProps['id']
-  @Prop() readonly text!: MenuItemProps['text']
-  @Prop({ required: false }) readonly link!: MenuItemProps['link']
-  @Prop({ required: false }) readonly children!: MenuItemProps['children']
+  @Prop({ required: false }) readonly id: MenuItemProps['id']
+  @Prop({ required: false }) readonly text: MenuItemProps['text']
+  @Prop({ required: false }) readonly link: MenuItemProps['link']
+  @Prop({ required: false }) readonly children: MenuItemProps['children']
   @Prop() readonly isLast!: MenuItemProps['isLast']
 
   get itemLink(): string {

@@ -1,7 +1,6 @@
 import { MainMenuItem } from '@/types/menu'
 
 interface AdditionalMenuItemProps {
-  id: string;
   isLast: boolean;
 }
 
