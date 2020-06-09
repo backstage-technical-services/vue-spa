@@ -1,0 +1,34 @@
+@import "../../global/links";
+
+a {
+  &, &:visited {
+    color: $color-bts-yellow;
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: $color-bts-yellow;
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: $color-bts-gold;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline-color: $color-bts-yellow;
+  }
+
+  &.muted {
+    color: $color-text;
+
+    &:hover {
+      color: $color-bts-yellow;
+    }
+
+    &:focus, &:active {
+      outline-color: $color-text;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.node:
+  image: node:12.16-alpine
+  variables:
+    YARN_CACHE_FOLDER: "$CI_PROJECT_DIR/.cache/yarn"
+    CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/.cache/Cypress"
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull
+    paths:
+      - node_modules

@@ -1,0 +1,13 @@
+@import "../../global/links";
+
+a {
+  color: $color-text;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline-color: #000;
+  }
+}

@@ -1,0 +1,20 @@
+$color-text: #000;
+
+@import "../vars";
+@import "../mixins";
+@import "../functions";
+
+$background-color: #e4e5e6;
+$header-bg-color: $navbar-bg-color;
+$header-blur-color: #000;
+$sidebar-bg-color: #edeeef;
+$sidebar-border-color: darken($sidebar-bg-color, 10%);
+
+::v-deep {
+  @import "admin/headers";
+  @import "admin/hr";
+  @import "admin/images";
+  @import "admin/links";
+}
+
+

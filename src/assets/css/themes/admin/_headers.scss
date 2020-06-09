@@ -1,0 +1,25 @@
+@import "../../global/headers";
+
+h1 {
+  color: #000;
+
+  @include fa() {
+    font-size: 0.85em;
+    margin-right: 0.25em;
+  }
+}
+
+h2 {
+  color: #000;
+  font-weight: normal;
+}
+
+h3 {
+  color: #000;
+}
+
+h4 {
+  color: #000;
+  font-weight: bold;
+  font-size: font-size(15px);
+}

@@ -1,0 +1,5 @@
+@import "vars";
+
+@function font-size($font-size) {
+  @return #{$font-size / $font-size-main}rem;
+}

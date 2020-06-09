@@ -1,0 +1,15 @@
+@import "../vars";
+@import "../mixins";
+@import "../functions";
+
+#app {
+  background-color: #000;
+  color: $color-text;
+}
+
+::v-deep {
+  @import "general/headers";
+  @import "general/hr";
+  @import "general/images";
+  @import "general/links";
+}

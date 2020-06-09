@@ -1,0 +1,11 @@
+{
+  "pluginsFile": "tests/e2e/plugins/index.js",
+  "reporter": "junit",
+  "reporterOptions": {
+    "mochaFile": "tests/reports/e2e-results.xml",
+    "toConsole": true
+  },
+  "viewportWidth": 1920,
+  "viewportHeight": 1080,
+  "chromeWebSecurity": false
+}

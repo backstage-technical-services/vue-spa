@@ -1,0 +1,30 @@
+.DS_Store
+node_modules
+/dist
+/tsc
+
+/coverage
+/coverage-unit
+/coverage-e2e
+/tests/e2e/videos/
+/tests/e2e/screenshots/
+/tests/reports
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+!.idea/codeStyles/*

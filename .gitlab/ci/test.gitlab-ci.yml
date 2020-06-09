@@ -1,0 +1,59 @@
+include:
+  - local: .gitlab/ci/_node.gitlab-ci.yml
+  - local: .gitlab/ci/_docker.gitlab-ci.yml
+
+.node-test:
+  extends: .node
+  stage: test
+  needs:
+    - install
+
+lint:
+  extends: .node-test
+  script:
+    - yarn lint --no-fix
+
+check-types:
+  extends: .node-test
+  script:
+    - yarn check-types
+
+unit-test:
+  extends: .node-test
+  script:
+    - yarn run test:unit
+    - mv coverage coverage-unit
+  artifacts:
+    paths:
+      - coverage-unit
+    reports:
+      junit: tests/reports/unit-results.xml
+  coverage: /All files\s*\|\s*([\d\.]+)/
+
+e2e-test:
+  extends: .node-test
+  image: cypress/base:12
+  script:
+    - yarn cypress install
+    - yarn cypress verify
+    - yarn run test:e2e:ci
+  artifacts:
+    reports:
+      junit: tests/reports/e2e-results.xml
+    paths:
+      - tests/e2e/videos/**/*.mp4
+      - tests/e2e/screenshots/**/*.png
+    expire_in: 1 day
+    when: always
+
+test-docker-image:
+  extends: .docker
+  stage: test
+  needs:
+    - install
+  script:
+    - scripts/build_image.sh
+    - scripts/test_container.sh
+  except:
+    refs:
+      - master
