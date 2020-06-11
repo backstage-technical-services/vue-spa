@@ -7,5 +7,7 @@ describe('the admin layout', () => {
 
     expect(layout.isVueInstance())
       .toBeTruthy()
+
+    layout.destroy()
   })
 })

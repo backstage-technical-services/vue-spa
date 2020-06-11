@@ -11,4 +11,8 @@ describe('the social footer section', () => {
   it('should contain all the links', () => {
     expect(footerSection.findAll('a')).toHaveLength(3)
   })
+
+  afterAll(() => {
+    footerSection.destroy()
+  })
 })

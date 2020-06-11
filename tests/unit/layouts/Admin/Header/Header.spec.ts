@@ -7,4 +7,8 @@ describe('the admin header component', () => {
   it('should render without crashing', () => {
     expect(header.isVueInstance()).toBeTruthy()
   })
+
+  afterAll(() => {
+    header.destroy()
+  })
 })

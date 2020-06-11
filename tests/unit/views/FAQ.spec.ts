@@ -13,5 +13,7 @@ describe('the FAQ page', () => {
 
     expect(view.findAll('h3'))
       .toHaveLength(6)
+
+    view.destroy()
   })
 })

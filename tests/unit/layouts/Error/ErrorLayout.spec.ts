@@ -7,5 +7,7 @@ describe('the error layout', () => {
 
     expect(layout.isVueInstance())
       .toBeTruthy()
+
+    layout.destroy()
   })
 })

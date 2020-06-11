@@ -18,5 +18,7 @@ describe('The error page', () => {
 
     expect(view.find('.error-content--details').text())
       .toBe('The error message')
+
+    view.destroy()
   })
 })

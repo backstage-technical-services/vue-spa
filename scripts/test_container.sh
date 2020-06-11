@@ -10,7 +10,7 @@ do
     health=$(docker inspect --format='{{.State.Health.Status}}' vue-spa-test)
     echo "Health = $health"
 
-    if [[ "${health}" = "healthy" ]]; then
+    if [ "${health}" = "healthy" ]; then
         docker stop vue-spa-test &> /dev/null
         exit 0
     fi

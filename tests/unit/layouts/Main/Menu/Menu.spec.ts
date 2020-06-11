@@ -14,4 +14,8 @@ describe('the menu component', () => {
   it('the action should have been called', () => {
     expect(actions['menu/refreshPrimaryMenu']).toHaveBeenCalled()
   })
+
+  afterAll(() => {
+    menu.destroy()
+  })
 })

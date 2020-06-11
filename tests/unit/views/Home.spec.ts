@@ -10,5 +10,7 @@ describe('The home page', () => {
 
     expect(view.find('.landing-page'))
       .toBeDefined()
+
+    view.destroy()
   })
 })

@@ -7,4 +7,8 @@ describe('the menu profile component', () => {
   it('should render without crashing', () => {
     expect(profile.isVueInstance()).toBeTruthy()
   })
+
+  afterAll(() => {
+    profile.destroy()
+  })
 })

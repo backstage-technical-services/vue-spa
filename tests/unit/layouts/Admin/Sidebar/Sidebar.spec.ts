@@ -14,4 +14,8 @@ describe('the admin sidebar component', () => {
   it('the action should have been called', () => {
     expect(actions['menu/refreshAdminMenu']).toHaveBeenCalled()
   })
+
+  afterAll(() => {
+    menu.destroy()
+  })
 })

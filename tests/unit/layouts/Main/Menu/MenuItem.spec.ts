@@ -15,6 +15,10 @@ describe('a menu item with no ID or text', () => {
   it('should render a divider', () => {
     expect(menuItem.find('.dropdown-divider')).toBeTruthy()
   })
+
+  afterAll(() => {
+    menuItem.destroy()
+  })
 })
 
 describe('a menu item with no link or children', () => {
@@ -37,6 +41,10 @@ describe('a menu item with no link or children', () => {
   it('the nav item should have an empty fragment', () => {
     expect(menuItem.find('a.nav-link').attributes('href')).toBe('#')
   })
+
+  afterAll(() => {
+    menuItem.destroy()
+  })
 })
 
 describe('a menu item with no children and a link', () => {
@@ -50,6 +58,10 @@ describe('a menu item with no children and a link', () => {
 
   it('the nav item should have the correct link', () => {
     expect(menuItem.find('a.nav-link').attributes('href')).toBe('http://link')
+  })
+
+  afterAll(() => {
+    menuItem.destroy()
   })
 })
 
@@ -79,5 +91,9 @@ describe('a menu item with children', () => {
 
   it('should have the correct number of children', () => {
     expect(menuItem.find('.dropdown-menu').findAll('li')).toHaveLength(2)
+  })
+
+  afterAll(() => {
+    menuItem.destroy()
   })
 })

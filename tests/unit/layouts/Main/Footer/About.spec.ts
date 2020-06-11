@@ -14,4 +14,8 @@ describe('the about footer section', () => {
     expect(emailElement.text()).toBe('info@bts-crew.com')
     expect(emailElement.attributes('href')).toBe('mailto:info@bts-crew.com')
   })
+
+  afterAll(() => {
+    footerSection.destroy()
+  })
 })

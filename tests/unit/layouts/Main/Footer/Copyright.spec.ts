@@ -11,4 +11,8 @@ describe('the copyright footer section', () => {
   it('should contain the date', () => {
     expect(footerSection.text()).toContain(new Date().getFullYear())
   })
+
+  afterAll(() => {
+    footerSection.destroy()
+  })
 })
