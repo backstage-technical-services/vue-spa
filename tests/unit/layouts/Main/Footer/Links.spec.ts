@@ -11,4 +11,8 @@ describe('the links footer section', () => {
   it('should contain all the links', () => {
     expect(footerSection.findAll('li')).toHaveLength(5)
   })
+
+  afterAll(() => {
+    footerSection.destroy()
+  })
 })

@@ -7,5 +7,7 @@ describe('the main layout', () => {
 
     expect(layout.isVueInstance())
       .toBeTruthy()
+
+    layout.destroy()
   })
 })

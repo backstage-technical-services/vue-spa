@@ -10,5 +10,7 @@ describe('the admin dashboard', () => {
 
     expect(view.find('h1').text())
       .toBe('Dashboard')
+
+    view.destroy()
   })
 })

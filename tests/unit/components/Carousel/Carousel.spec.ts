@@ -16,6 +16,8 @@ describe('Carousel component', () => {
       .toBeTruthy()
     expect(carousel.findAll('img'))
       .toHaveLength(2)
+
+    carousel.destroy()
   })
 
   it('renders with no images provided', () => {
@@ -29,5 +31,7 @@ describe('Carousel component', () => {
       .toBeTruthy()
     expect(carousel.findAll('img'))
       .toHaveLength(0)
+
+    carousel.destroy()
   })
 })

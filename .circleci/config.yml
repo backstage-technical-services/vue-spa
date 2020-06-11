@@ -1,0 +1,181 @@
+version: 2.1
+
+orbs:
+  slack: circleci/slack@3.4.2
+  sonarcloud: sonarsource/sonarcloud@1.0.1
+
+executors:
+  node:
+    docker:
+      - image: circleci/node:12.16
+  cypress:
+    docker:
+      - image: cypress/base:12
+
+jobs:
+  install:
+    executor: node
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-
+      - run:
+          name: Configure NPM
+          command: |
+            npm config set "@fortawesome:registry" https://npm.fontawesome.com/
+            npm config set "//npm.fontawesome.com/:_authToken" ${FONTAWESOME_NPM_AUTH_TOKEN}
+      - run:
+          name: Install
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+            - ~/.cache/yarn
+      - persist_to_workspace:
+          root: '.'
+          paths:
+            - '*'
+
+  lint:
+    executor: node
+    steps:
+      - attach_workspace:
+          at: '.'
+      - run:
+          name: Lint
+          command: yarn lint --no-fix
+
+  check-types:
+    executor: node
+    steps:
+      - attach_workspace:
+          at: '.'
+      - run:
+          name: Check types
+          command: yarn check-types
+
+  test-container:
+    executor: node
+    steps:
+      - attach_workspace:
+          at: '.'
+      - setup_remote_docker
+      - run:
+          name: Build image
+          command: scripts/build_image.sh
+      - run:
+          name: Test image
+          command: scripts/test_container.sh
+
+  unit-test:
+    executor: node
+    steps:
+      - attach_workspace:
+          at: '.'
+      - run:
+          name: Run tests
+          command: yarn run test:unit
+      - run:
+          name: Move coverage report
+          command: mv coverage coverage-unit
+      - store_test_results:
+          path: tests/reports
+      - persist_to_workspace:
+          root: '.'
+          paths:
+            - 'coverage-unit'
+
+  e2e-test:
+    executor: cypress
+    steps:
+      - attach_workspace:
+          at: '.'
+      - run:
+          name: Install Cypress
+          command: |
+            yarn cypress install
+            yarn cypress verify
+      - run:
+          name: Run tests
+          command: yarn run test:e2e:ci
+      - store_test_results:
+          path: tests/reports
+      - store_artifacts:
+          path: tests/e2e/screenshots
+          destination: screenshots
+      - store_artifacts:
+          path: tests/e2e/videos
+          destination: videos
+#      - persist_to_workspace:
+#          root: '.'
+#          paths:
+#            - 'coverage-e2e'
+
+  sonarcloud:
+    executor: node
+    steps:
+      - attach_workspace:
+          at: '.'
+      - sonarcloud/scan
+
+  deploy:
+    executor: node
+    steps:
+      - attach_workspace:
+          at: "."
+      - setup_remote_docker
+      - run:
+          name: Build image
+          command: scripts/build_image.sh
+      - run:
+          name: Push image
+          command: |
+            echo "$DOCKER_PASSWORD" | docker login $DOCKER_REGISTRY_URL -u $DOCKER_USERNAME --password-stdin
+            docker tag vue-spa:latest $DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_IMAGE:$CIRCLE_SHA1
+            docker push $DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_IMAGE
+      - slack/status:
+          fail_only: true
+          failure_message: "*SPA:* Deployment failed."
+          include_job_number_field: false
+          include_project_field: false
+
+workflows:
+  version: 2
+
+  build-deploy:
+    jobs:
+      - install
+      - lint:
+          requires:
+            - install
+      - check-types:
+          requires:
+            - install
+      - test-container:
+          requires:
+            - install
+      - unit-test:
+          requires:
+            - install
+      - e2e-test:
+          requires:
+            - install
+      - sonarcloud:
+          context: SonarCloud
+          requires:
+            - lint
+            - check-types
+            - test-container
+            - unit-test
+            - e2e-test
+      - deploy:
+          context: Docker
+          requires:
+            - sonarcloud
+          filters:
+            branches:
+              only:
+                - master
