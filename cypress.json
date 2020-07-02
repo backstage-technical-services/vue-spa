@@ -3,7 +3,7 @@
   "reporter": "junit",
   "reporterOptions": {
     "mochaFile": "tests/reports/e2e-results.xml",
-    "toConsole": true
+    "toConsole": false
   },
   "viewportWidth": 1920,
   "viewportHeight": 1080,

@@ -4,11 +4,10 @@ node_modules
 /tsc
 
 /coverage
-/coverage-unit
-/coverage-e2e
 /tests/e2e/videos/
 /tests/e2e/screenshots/
 /tests/reports
+.nyc_output/
 
 # local env files
 .env.local

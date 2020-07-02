@@ -78,15 +78,12 @@ jobs:
       - run:
           name: Run tests
           command: yarn run test:unit
-      - run:
-          name: Move coverage report
-          command: mv coverage coverage-unit
       - store_test_results:
           path: tests/reports
       - persist_to_workspace:
           root: '.'
           paths:
-            - 'coverage-unit'
+            - 'coverage/unit'
 
   e2e-test:
     executor: cypress
@@ -109,10 +106,10 @@ jobs:
       - store_artifacts:
           path: tests/e2e/videos
           destination: videos
-#      - persist_to_workspace:
-#          root: '.'
-#          paths:
-#            - 'coverage-e2e'
+      - persist_to_workspace:
+          root: '.'
+          paths:
+            - 'coverage/e2e'
 
   sonarcloud:
     executor: node
