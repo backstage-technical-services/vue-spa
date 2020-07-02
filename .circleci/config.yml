@@ -116,6 +116,9 @@ jobs:
     steps:
       - attach_workspace:
           at: '.'
+      - run:
+          name: Merge coverage
+          command: yarn merge-coverage
       - sonarcloud/scan
 
   deploy:
