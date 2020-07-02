@@ -16,5 +16,6 @@ module.exports = {
   snapshotSerializers: ['jest-serializer-vue'],
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{ts,vue}', '!**/node_modules/**'],
-  coverageReporters: ['text', 'lcov']
+  coverageReporters: ['text', 'lcov', 'json'],
+  coverageDirectory: 'coverage/unit'
 }
