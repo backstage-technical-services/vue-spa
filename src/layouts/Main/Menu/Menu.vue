@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import MenuItem from './MenuItem.vue'
-import Profile from './Profile.vue'
+import Profile from './Profile'
 import { Component, Vue } from 'vue-property-decorator'
 import { MainMenu } from '@/types/menu'
 import { MenuClasses } from '@/layouts/Main/Menu/types'

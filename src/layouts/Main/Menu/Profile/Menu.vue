@@ -1,5 +1,5 @@
 <template>
-  <b-dropdown right>
+  <b-dropdown right class="navbar-profile-link-wrapper">
     <template v-slot:button-content>
       <div class="navbar-profile-link">
         <font-awesome-icon :icon="profileLinkIcon"></font-awesome-icon>
@@ -12,37 +12,43 @@
     <b-dropdown-divider></b-dropdown-divider>
     <b-dropdown-item to="/admin">Admin panel</b-dropdown-item>
     <b-dropdown-divider></b-dropdown-divider>
-    <b-dropdown-item-button>Logout</b-dropdown-item-button>
+    <b-dropdown-item-button @click="logout">
+      Logout
+    </b-dropdown-item-button>
   </b-dropdown>
 </template>
 
 <script lang="ts">
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { Component, Vue } from 'vue-property-decorator'
+import keycloak from '@/config/auth'
 
 @Component
-export default class Profile extends Vue {
+export default class Menu extends Vue {
   private profileLinkIcon = faUser;
+
+  logout() {
+    keycloak.logout()
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-  @import "../../../assets/css/mixins";
+  @import "../../../../assets/css/mixins";
 
   .dropdown {
-    display: block;
-    height: 100%;
+    &.show {
+      background: $navbar-bg-color-hover;
+    }
 
     & > ::v-deep .dropdown-toggle.btn-secondary {
-      $navbar-profile-size: 40px;
-
       background: transparent;
       border-radius: 0;
       border: none;
       display: flex;
       align-items: center;
       height: 100%;
-      padding: 0 1em;
+      padding: 0;
       position: relative;
 
       &::after {
@@ -56,24 +62,9 @@ export default class Profile extends Vue {
       &:hover,
       &:active,
       &:focus {
-        background: $navbar-bg-color-hover;
+        background: none;
         box-shadow: none;
         outline: none;
-      }
-
-      .navbar-profile-link {
-        background: #888;
-        border-radius: $navbar-profile-size/2;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: $navbar-profile-size;
-        width: $navbar-profile-size;
-
-        @include fa() {
-          color: #333;
-          font-size: 18px;
-        }
       }
     }
   }

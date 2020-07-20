@@ -1,6 +1,7 @@
 import AdminLayout from '@/layouts/Admin'
 import ErrorLayout from '@/layouts/Error'
 import MainLayout from '@/layouts/Main'
+import LoadingLayout from '@/layouts/Loading'
 import { Vue } from 'vue/types/vue'
 
 export enum Layout {
@@ -22,5 +23,6 @@ export const resolveLayout = (layout?: Layout): Vue.VueConstructor => {
 export {
   AdminLayout,
   ErrorLayout,
-  MainLayout
+  MainLayout,
+  LoadingLayout
 }

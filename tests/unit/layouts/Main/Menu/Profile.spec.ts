@@ -1,8 +1,8 @@
-import { mount } from '../../../utils/vue'
-import Profile from '@/layouts/Main/Menu/Profile.vue'
+import { shallowMount } from '../../../utils/vue'
+import Profile from '@/layouts/Main/Menu/Profile'
 
 describe('the menu profile component', () => {
-  const profile = mount(Profile)
+  const profile = shallowMount(Profile)
 
   it('should render without crashing', () => {
     expect(profile.isVueInstance()).toBeTruthy()

@@ -1,15 +1,46 @@
 <template>
-  <component :is="layout"></component>
+  <component :is="layout" v-if="isReady"></component>
+  <loading-layout v-else />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { resolveLayout } from '@/layouts'
+import { LoadingLayout, resolveLayout } from '@/layouts'
+import keycloak, { initConfig } from '@/config/auth'
 
-@Component
+@Component({
+  components: {
+    LoadingLayout
+  }
+})
 export default class App extends Vue {
   get layout() {
     return resolveLayout(this.$route.meta.layout)
+  }
+
+  get isReady(): boolean {
+    return this.$store.getters.isReady
+  }
+
+  mounted() {
+    keycloak.init(initConfig)
+      .then(() => this.$store.dispatch('updateReadiness', { key: 'keycloak', isReady: true }))
+      .catch(error => console.error('Failed to mark Keycloak as ready', error))
+
+    keycloak.onAuthSuccess = () => {
+      this.$store
+        .dispatch('auth/login')
+        .then(() => {
+          if (this.$route.hash.includes('state')) {
+            this.$router.push(this.$route.fullPath.replace(this.$route.hash, ''))
+          }
+        })
+        .then(() => keycloak
+          .loadUserProfile()
+          .then(profile => this.$store.dispatch('auth/setProfile', profile))
+        )
+        .catch(error => console.error('Failed to log in', error))
+    }
   }
 }
 </script>
