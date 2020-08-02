@@ -3,6 +3,9 @@ module.exports = {
   roots: [
     'tests/unit'
   ],
+  setupFiles: [
+    '<rootDir>/tests/unit/setupEnv.js'
+  ],
   reporters: [
     'default', [
       'jest-junit', {
