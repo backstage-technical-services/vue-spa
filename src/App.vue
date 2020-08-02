@@ -35,6 +35,9 @@ export default class App extends Vue {
             this.$router.push(this.$route.fullPath.replace(this.$route.hash, ''))
           }
         })
+        .then(() => {
+          this.$store.dispatch('menu/refreshPrimaryMenu')
+        })
         .then(() => keycloak
           .loadUserProfile()
           .then(profile => this.$store.dispatch('auth/setProfile', profile))
