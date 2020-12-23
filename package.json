@@ -13,7 +13,7 @@
     "merge-coverage": "istanbul-merge --out coverage/merged.json coverage/unit/coverage-final.json coverage/e2e/coverage-final.json"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.13.1",
     "core-js": "^3.6.4",
