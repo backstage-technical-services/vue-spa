@@ -19,8 +19,8 @@
 
 ## Pre-requisites
 
-* Node.js (12.16+)
-* Yarn
+* [Node.js][install-nodejs] (12.16+)
+* [Yarn][install-yarn]
 
 ## Installing
 
@@ -47,7 +47,10 @@
     ```sh
     $ yarn run test:unit
     ```
-* End to end tests
+* End-to-end tests
     ```sh
     $ yarn run test:e2e
     ```
+
+[install-nodejs]: https://nodejs.org/en/download
+[install-yarn]: https://classic.yarnpkg.com/en/docs/install
